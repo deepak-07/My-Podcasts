@@ -29,11 +29,11 @@ var podcastDB = {
 var podcastShelf = Object.keys(podcastDB);
 
 export default function App() {
+  const [genre, setGenre] = useState();
+
   function onClickShows(item) {
-    const [shows, setShows] = useState("");
-    var genre = podcastDB[item];
-    setShows(genre.show);
-    setShows(genre.rating);
+    setGenre(item);
+    // setGenre(genre.rating);
   }
 
   return (
@@ -47,14 +47,26 @@ export default function App() {
           <span
             onClick={() => onClickShows(item)}
             style={{
+              display: "block",
               padding: "1rem 1rem",
               border: "0.5px solid black",
               margin: "1rem",
               borderRadius: "4rem",
               cursor: "pointer"
             }}
+            key={item}
           >
             {item}
+            <div>
+              {podcastDB[item].map(function (shows) {
+                return (
+                  <span>
+                    {shows.show}
+                    {shows.rating}
+                  </span>
+                );
+              })}
+            </div>
           </span>
         );
       })}
