@@ -29,11 +29,10 @@ var podcastDB = {
 var podcastShelf = Object.keys(podcastDB);
 
 export default function App() {
-  const [genre, setGenre] = useState();
+  const [genre, setGenre] = useState("technical");
 
-  function onClickShows(item) {
-    setGenre(item);
-    // setGenre(genre.rating);
+  function onClickShows(genre) {
+    setGenre(genre);
   }
 
   return (
@@ -42,34 +41,43 @@ export default function App() {
       {/* <h2>Start editing to see some magic happen!</h2> */}
       <h4> See my recommendation</h4>
 
-      {podcastShelf.map(function (item) {
+      {podcastShelf.map(function (genre, item) {
         return (
           <span
-            onClick={() => onClickShows(item)}
+            onClick={() => onClickShows(genre)}
             style={{
-              display: "block",
+              display: "inline",
               padding: "1rem 1rem",
               border: "0.5px solid black",
-              margin: "1rem",
+
               borderRadius: "4rem",
               cursor: "pointer"
             }}
             key={item}
           >
-            {item}
-            <div>
-              {podcastDB[item].map(function (shows) {
-                return (
-                  <span>
-                    {shows.show}
-                    {shows.rating}
-                  </span>
-                );
-              })}
-            </div>
+            {genre}
           </span>
         );
       })}
+
+      <div>
+        <ul style={{ listStyle: "none" }}>
+          {podcastDB[genre].map(function (shows) {
+            return (
+              <span
+                style={{
+                  display: "block",
+                  padding: "2rem 1rem",
+                  margin: ""
+                }}
+              >
+                <li>Shows :{shows.show}</li>
+                <li>Ratings :{shows.rating}</li>
+              </span>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 }
