@@ -66,8 +66,8 @@ export default function App() {
       className="App"
       style={{
         backgroundImage: `url(${bg})`,
-        backgroundSize: "cover ",
-        minHeight: "600px"
+        backgroundSize: "cover",
+        minHeight: "800px"
       }}
     >
       <h1 style={{ padding: "1rem", color: "rgba(49, 46, 129)" }}>
